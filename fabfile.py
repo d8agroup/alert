@@ -6,11 +6,8 @@ from local_fabfile import LOCAL_CODE_ROOT
 
 packages = {
     'apt-get': [
-        'python-mysqldb'
-    ],
-    'pip': [
-        'django=1.5.1',
-        'South==0.8.1'
+        'postgresql',
+        'python-psycopg2'
     ]
 }
 

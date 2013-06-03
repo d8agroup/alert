@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>MetaLayer - Themes</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <style>
+            body {
+                padding-top: 60px;
+                padding-bottom: 40px;
+            }
+        </style>
+        <link rel="stylesheet" href="{% static 'css/bootstrap-responsive.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/jquery-ui-1.10.0.custom.css' %}"/>
+        <!--[if lt IE 9]>
+            <link rel="stylesheet" href="{% static 'css/jquery.ui.1.10.0.ie.css' %}"/>
+        <![endif]-->
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}" />
+        <!--[if IE 7]>
+            <link rel="stylesheet" href="{% static 'css/font-awesome-ie7.min.css' %}">
+        <![endif]-->
+        {% block css %}{% endblock %}
+
+        <script src="{% static 'js/vendor/modernizr-2.6.2-respond-1.1.0.min.js' %}"></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <a class="brand" href="#">MetaLayer - Themes</a>
+                    <div class="nav-collapse collapse pull-right">
+                        <ul class="nav">
+                            {% if user.is_authenticated %}
+{#                                <li>#}
+{#                                    <a href="{% url 'home_page' %}">#}
+{#                                        <i class="icon-home"></i> Home#}
+{#                                    </a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href="{% url 'signout' %}">#}
+{#                                        <i class="icon-signout"></i> Sign out#}
+{#                                    </a>#}
+{#                                </li>#}
+                            {% else %}
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="icon-signin"></i> Sign in
+                                    </a>
+                                    <ul class="dropdown-menu pull-right">
+                                        <div id="login-container">
+                                            {% include 'controls/login.html' %}
+                                        </div>
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+
+        <div class="hide">
+            {% block modals %}{% endblock %}
+        </div>
+
+        {% block footer %}{% endblock %}
+
+        <script type="text/javascript" src="{% static 'js/vendor/jquery-1.9.1.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/vendor/jquery-ui-1.10.1.custom.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/vendor/uuid.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/vendor/d3_2_9_3_min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/controls/loading.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/functions.js' %}"></script>
+        {% block js %}{% endblock %}
+    </body>
+</html>

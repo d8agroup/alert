@@ -105,11 +105,6 @@ ROOT_URLCONF = 'alert.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'alert.wsgi.application'
 
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -119,6 +114,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
+    'south',
+    'alert',
+    'django_odc',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -150,9 +148,8 @@ LOGGING = {
     }
 }
 
-
-
 # CUSTOM SETTINGS
 ADMIN_URL = 'admin'
+ODC_URL = 'odc'
 
 from local_settings import *

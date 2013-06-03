@@ -1,0 +1,8 @@
+/* LOADING */
+.loading-message p { text-align:center; }
+.loading-message p i { height:auto; width:auto; }
+
+/* LOGIN */
+#login-container { width:350px; min-height:80px; }
+#login-container form { padding:20px; text-align:center; margin-bottom:0; }
+#login-container form button { position:relative; top:-2px;}
