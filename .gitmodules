@@ -1,0 +1,3 @@
+[submodule "django_odc"]
+	path = django_odc
+	url = git@github.com:metaLayer/django_odc.git

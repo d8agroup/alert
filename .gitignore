@@ -3,4 +3,4 @@
 *.pyc
 local_settings.py
 .idea
-.fabfile.py
+local_fabfile.py
