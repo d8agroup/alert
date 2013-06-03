@@ -22,10 +22,7 @@ def deploy(alert_branch='master', odc_branch='master'):
     with cd('/usr/local/metaLayer-alert'):
         run("git fetch")
         run("git merge origin/%s" % alert_branch)
-        run("git status")
-    with cd('/usr/local/metaLayer-alert/django_odc'):
-        run("git fetch")
-        run("git merge origin/%s" % odc_branch)
+        run("git submodule update")
         run("git status")
     with cd('/usr/local/metaLayer-alert'):
         run("python manage.py collectstatic --noinput")
