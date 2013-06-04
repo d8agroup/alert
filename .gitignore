@@ -4,3 +4,5 @@
 local_settings.py
 .idea
 local_fabfile.py
+collected-static
+alert.wsgi
