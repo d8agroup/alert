@@ -17,7 +17,11 @@ def git():
         cd_path = os.path.join(LOCAL_CODE_ROOT, directory)
         local('cd %s && git add --all && git commit && git push origin master' % cd_path)
 
-        
+
+def recycle():
+    run("service apache2 restart")
+
+
 def deploy(alert_branch='master', odc_branch='master'):
     with cd('/usr/local/metaLayer-alert'):
         run("git fetch")
