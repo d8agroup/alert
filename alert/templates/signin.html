@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="login" class="container-with-header">
+        <h2 class="header">
+            <i class="icon-signin"></i>
+            {{ s.login.login_container_title }}
+        </h2>
+        <div class="content">
+            {% if errors %}
+                <div class="ui-state-error">
+                    {% for error in errors %}
+                        <p><i class="icon-warning-sign"></i> {{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <form class="form-horizontal" method="POST">
+                {% csrf_token %}
+                <div class="control-group">
+                    <label for='username' class="control-label">{{ s.login.label_username }}</label>
+                    <div class="controls">
+                        <input type="text" name="username" value="{{ username }}" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for='password' class="control-label">{{ s.login.label_password }}</label>
+                    <div class="controls">
+                        <input type="password" name="password" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button class="btn btn-primary" id="login-button">
+                            {{ s.login.button_submit }}
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

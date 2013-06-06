@@ -1,0 +1,44 @@
+{% for item in items %}
+    <div class="row-fluid content-item">
+        <div class="span3">
+            <div class="content-item-actions state-highlight row-fluid">
+                <div class="span8">
+
+                </div>
+                <div class="content-item-curation-buttons span4">
+                    <a class="btn btn-success curation-button-up" title="{{ s.curate_dataset.curate_button_up }}">
+                        <i class="icon-arrow-up"></i>
+                    </a>
+                    <a class="btn btn-danger curation-button-down" title="{{ s.curate_dataset.curate_button_down }}">
+                        <i class="icon-arrow-down"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="span9 content-item-data">
+            <div class="row-fluid">
+                <div class="span10">
+                    <p class="title">{{ item.title }}</p>
+                    {% if item.text and item.text.0 != item.title%}
+                        <p class="text">
+                            {% for t in item.text %}
+                                {{ t }}{% if not forloop.last %}<br/>{% endif %}
+                            {% endfor %}
+                        </p>
+                    {% endif %}
+                    <table class="metadata">
+                        <tr>
+                            <th>Created:</th>
+                            <td>{{ item.created }} <abbr title="Coordinated Universal Time">UTC</abbr></td>
+                            <th>Author:</th>
+                            <td>{{ item.author.display_name }}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="span2">
+                    <img src="{{ item.source.channel.images.64 }}" />
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

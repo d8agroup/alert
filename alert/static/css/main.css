@@ -2,7 +2,24 @@
 .loading-message p { text-align:center; }
 .loading-message p i { height:auto; width:auto; }
 
+
 /* LOGIN */
-#login-container { width:350px; min-height:80px; }
-#login-container form { padding:20px; text-align:center; margin-bottom:0; }
-#login-container form button { position:relative; top:-2px;}
+#login { width: 550px; margin: 60px auto 0;}
+
+
+/* CURATE DATASET */
+#curation-container { overflow:hidden; }
+#curation-filters { height:120px; }
+#curation-list { overflow:hidden; overflow-y: auto; min-height: 150px;}
+#curation-list .content-item { margin-bottom:20px;}
+#curation-list .content-item-curation-buttons a { margin:1px 5px; }
+#curation-list .content-item-data { min-height: 80px; }
+#curation-list .title { font-size:18px; margin-top:5px;}
+#curation-list .metadata { width:100%; background:#FAFAFA; }
+#curation-list .metadata th { text-align:right; padding:5px; }
+
+/* ADMIN USERS SUMMARY */
+#admin-users-summary-content { height:150px; overflow:hidden; overflow-y:auto; }
+#admin-users-summary-content .user { padding:5px; margin-right:5px;}
+#admin-users-summary-content .user:hover { background-color:#EEE; }
+#admin-users-summary-content .user a { position:relative; bottom:1px;}

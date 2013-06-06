@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/controls/admin_users_summery.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            //Init the users summery
+            $('#admin-users-summary').ml_alert_admin_users_summary();
+        })
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="span8">
+
+        </div>
+        <div class="span4">
+            <div class="container-with-header" id="admin-users-summary">
+                <h2 class="header">
+                    <a class="btn btn-mini" title="{{ s.admin_users_summary.add_user_button }}">
+                        <i class="icon-plus"></i>
+                    </a>
+                    <i class="icon-user"></i>
+                    {{ s.admin_users_summary.title }}
+                </h2>
+                <div class="content">
+                    <div id="admin-users-summary-content"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

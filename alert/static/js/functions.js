@@ -12,3 +12,9 @@ function clone(object)
     }
     return newObj;
 }
+
+function url(name) {
+    return {
+        admin_users_summary: '/admin/users_summary'
+    }[name]
+}

@@ -1,5 +1,5 @@
 (function( $ ){
-    $.fn.ml_themes_loading = function(message) {
+    $.fn.ml_alert_loading = function(message) {
 
         //Embeded function to calculate css changes
         var calculate_css_values = function(container_height, container_width){

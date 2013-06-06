@@ -10,5 +10,5 @@ paramiko==1.10.1
 pycrypto==2.6
 requests==1.2.3
 solrpy==0.9.5
-tweepy==2.0
+twython==2.10.1
 wsgiref==0.1.2

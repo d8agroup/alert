@@ -1,0 +1,18 @@
+<h5>{{ s.admin_users_summary.admins_title }}</h5>
+{% for admin in admins %}
+    <div class="user admin ui-corner-all" data-user_id="{{ admin.id }}">
+        <a class="btn btn-mini edit-user pull-right" title="{{ s.admin_users_summary.edit_user }}">
+            <i class="icon-edit"></i>
+        </a>
+        {{ admin.username }}
+    </div>
+{% endfor %}
+<h5>{{ s.admin_users_summary.curators_title }}</h5>
+{% for curator in curators %}
+    <div class="user curator ui-corner-all" data-user_id="{{ curator.id }}">
+        <a class="btn btn-mini edit-user pull-right" title="{{ s.admin_users_summary.edit_user }}">
+            <i class="icon-edit"></i>
+        </a>
+        {{ curator.username }}
+    </div>
+{% endfor %}

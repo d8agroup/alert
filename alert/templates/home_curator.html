@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="span9">
+            {% for dataset in datasets %}
+                <div class="container-with-header dataset">
+                    <h2 class="header">{{ dataset.display_name }}</h2>
+                    <div class="content">
+                        <div class="row-fluid">
+                            <div class="span8">
+
+                            </div>
+                            <div class="span4">
+                                <a class="btn btn-block btn-primary"
+                                   title="{{ s.curators_dataset_list.dataset_start_curating_button }}"
+                                   href="{% url 'curate' dataset.id %}">
+                                    {{ s.curators_dataset_list.dataset_start_curating_button }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

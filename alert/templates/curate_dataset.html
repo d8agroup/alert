@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load alert_tags %}
+
+{% block page_id %}dataset-curate{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{% static 'js/curate_dataset.js' %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#dataset-curate').ml_alert_curate_dataset();
+            $('#dataset-curate').ml_alert_curate_dataset('init_with_dataset', {{ dataset|jsonify|safe }});
+        })
+    </script>
+{% endblock %}
+
+{% block content %}
+    <input type="hidden" id="search-url" value="{% url 'curate' dataset.id %}" />
+    <div class="row">
+        <div class="span9">
+            <div id="curation-container">
+                <div id="curation-filters" class="state-highlight">
+
+                </div>
+                <div id="curation-list">
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
