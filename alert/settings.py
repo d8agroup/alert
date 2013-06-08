@@ -87,8 +87,7 @@ SECRET_KEY = '18cn_GRIe5lm=v65e=9rl)-z6($zvz&=cktknzahlftc&3!etl'
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
+    'django.template.loaders.app_directories.Loader',)
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
@@ -97,17 +96,14 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.contrib.messages.context_processors.messages",
     "alert.context_processors.site_strings",
-)
+    "alert.context_processors.deployment_timestamp",)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-)
+    'django.contrib.messages.middleware.MessageMiddleware',)
 
 ROOT_URLCONF = 'alert.urls'
 
@@ -160,5 +156,7 @@ LOGGING = {
 # CUSTOM SETTINGS
 ADMIN_URL = 'admin'
 ODC_URL = 'odc'
+
+DEPLOYMENT_TIMESTAMP = 1370700086
 
 from alert.local_settings import *

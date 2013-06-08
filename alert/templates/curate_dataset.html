@@ -5,7 +5,7 @@
 {% block page_id %}dataset-curate{% endblock %}
 
 {% block js %}
-    <script type="text/javascript" src="{% static 'js/curate_dataset.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/curate_dataset.js' %}?ts={{ deployment_timestamp }}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $('#dataset-curate').ml_alert_curate_dataset();

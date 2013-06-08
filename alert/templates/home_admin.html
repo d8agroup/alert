@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block js %}
-    <script type="text/javascript" src="{% static 'js/controls/admin_users_summery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/controls/admin_users_summery.js' %}?ts={{ deployment_timestamp }}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
 
