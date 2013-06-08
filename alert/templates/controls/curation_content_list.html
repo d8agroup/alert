@@ -18,7 +18,7 @@
         <div class="span9 content-item-data">
             <div class="row-fluid">
                 <div class="span10">
-                    <p class="title">{{ item.title }}</p>
+                    <p class="title"><a href="{{ item.link }}" target="_blank" title="Click to see original content">{{ item.title }}</a></p>
                     {% if item.text and item.text.0 != item.title%}
                         <p class="text">
                             {% for t in item.text %}
