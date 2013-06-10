@@ -9,7 +9,7 @@ from django.template import RequestContext
 from django.template.loader import render_to_string
 
 from templatetags.alert_tags import is_admin, is_curator
-from utils import site_strings, get_curation_list
+from utils import site_strings, get_curation_list, record_curation_action
 from django_odc import api as odc
 
 
@@ -66,7 +66,15 @@ def curate_dataset(request, dataset_id):
                 'errors': site_strings()['curate_dataset']['error_no_access_to_dataset']})
             return HttpResponse(return_data, content_type='application/json')
         raw_search_data = json.loads(request.POST.get('search_data', '{}'))
-        search_results = get_curation_list(dataset_id, raw_search_data, request)
+        exclude_content_ids = []
+        rows = 20
+        if 'curation_direction' in request.POST:
+            content_item = json.loads(request.POST.get('content_item'))
+            curation_direction = request.POST.get('curation_direction')
+            exclude_content_ids = json.loads(request.POST.get('content_item_ids'))
+            rows -= len(exclude_content_ids)
+            record_curation_action(dataset_id, content_item, curation_direction, request.user)
+        search_results = get_curation_list(dataset_id, raw_search_data, request, exclude_content_ids, rows)
         content_template = render_to_string(
             'controls/curation_content_list.html', search_results,
             context_instance=RequestContext(request))

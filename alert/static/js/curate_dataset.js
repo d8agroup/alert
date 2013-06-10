@@ -13,13 +13,13 @@
         $.ml_alert_curate_dataset.repaint();
     };
 
-    $.ml_alert_curate_dataset.repaint = function() {
+    $.ml_alert_curate_dataset.refresh_content_list = function(post_data) {
 
-        //Close the tag modal if open
-        $('#tag-focus-modal').dialog('close');
+        //Get a handle on the container
+        var container = $('#dataset-curate');
 
-        //Call the repaint instance method
-        $('#dataset-curate').ml_alert_curate_dataset('repaint');
+        //Call the refresh instance method
+        container.ml_alert_curate_dataset('refresh_content_list', post_data);
     };
 
     $.ml_alert_curate_dataset.search_data = function(search_data) {
@@ -282,19 +282,6 @@
             //return the container
             return container;
         },
-        init_with_history_record: function(history_record){
-
-            //get a handel on the container
-            var container = this;
-
-            $.ml_alert_curate_dataset.search_data(history_record.search_data);
-
-            //Repaint everything
-            container.ml_alert_curate_dataset('repaint');
-
-            //return the container
-            return container;
-        },
         set_display_css: function() {
 
             //get a handel on the container
@@ -334,6 +321,18 @@
                 search_data: JSON.stringify($.ml_alert_curate_dataset.search_data())
             };
 
+            //Call the refresh list
+            container.ml_alert_curate_dataset('refresh_content_list', post_data);
+
+            //return the container
+            return container;
+
+        },
+        refresh_content_list: function(post_data){
+
+            //get a handel on the container
+            var container = this;
+
             //Get the repaint url
             var url = container.find('#search-url').val();
 
@@ -343,49 +342,29 @@
                 //Check the status
                 if (return_data.status == 'ok') {
 
-                    $('#curation-list').html(return_data.content_template);
+                    //Get a handle on the curation list container
+                    var curation_list = $('#curation-list');
 
-                    //Wait a couple of seconds then record the history step
-//                    setTimeout(function(){
-//                        $.ml_alert_curate_dataset.record_history();
-//                    }, 4500);
+                    //If the curation list is in loading state then remove it
+                    curation_list.find('> .loading-message').remove();
+
+                    //Init the template inside the list
+                    curation_list.append(return_data.content_template);
+
+                    //Init the content items
+                    curation_list.find('.content-item').ml_alert_curate_dataset_content_item();
                 }
                 else {
 
+                    //TODO: This needs to be improved
                     alert('error');
-//                    //Get a handel on the gaph container
-//                    var graph_container = $('#graph-main');
-//
-//                    //Build the template
-//                    var template = $('' +
-//                        '<div class="state-error">' +
-//                            '<h5>Sorry something went wrong</h5>' +
-//                            '<p><i class="icon-warning-sign"></i> There was an error rendering that graph, it could be ' +
-//                            'that there is nothing that matches your current filters, please use the back button below:' +
-//                            '</p>' +
-//                            '<p>' +
-//                                '<a class="btn" id="back-button"><i class="icon-backwards"></i> back</a>' +
-//                            '</p>' +
-//                        '</div>');
-//
-//                    //Find and attach to the backwards button
-//                    template.find('#back-button').click(function(){
-//                        $.ml_alert_curate_dataset.backwards();
-//                    });
-//
-//                    //Set the margin of the template
-//                    template.css('margin-top', parseInt(graph_container.height() / 3) + "px");
-//
-//                    //Put things in error state
-//                    graph_container.html(template);
                 }
 
                 //Set the display css
                 container.ml_alert_curate_dataset('set_display_css');
             });
 
-            //return the container
-            return container;
+
 
         },
         attach_event_handlers: function(){

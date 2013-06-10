@@ -31,7 +31,7 @@ def git():
 
 def pull():
     local('cd ~/code/metaLayer/alert/django_odc && git fetch && git merge origin/master')
-    local('cd ~/code/metaLayer/alert && git fetch && git merge origin/dev')
+    local('cd ~/code/metaLayer/alert && git fetch && git merge origin/master')
 
 
 def manage(command):

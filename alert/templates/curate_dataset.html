@@ -6,6 +6,7 @@
 
 {% block js %}
     <script type="text/javascript" src="{% static 'js/curate_dataset.js' %}?ts={{ deployment_timestamp }}"></script>
+    <script type="text/javascript" src="{% static 'js/controls/curate_dataset_content_item.js' %}?ts={{ deployment_timestamp }}"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $('#dataset-curate').ml_alert_curate_dataset();
@@ -15,7 +16,7 @@
 {% endblock %}
 
 {% block content %}
-    <input type="hidden" id="search-url" value="{% url 'curate' dataset.id %}" />
+    <input type="hidden" id="curate-url" value="{% url 'curate' dataset.id %}" />
     <div class="row">
         <div class="span9">
             <div id="curation-container">

@@ -1,15 +1,16 @@
+{% load alert_tags %}
 {% for item in items %}
-    <div class="row-fluid content-item">
+    <div class="row-fluid content-item ui-corner-all" data-content_item="{{ item.to_dict|jsonify }}">
         <div class="span3">
-            <div class="content-item-actions state-highlight row-fluid">
+            <div class="content-item-actions row-fluid">
                 <div class="span8">
 
                 </div>
                 <div class="content-item-curation-buttons span4">
-                    <a class="btn btn-success curation-button-up" title="{{ s.curate_dataset.curate_button_up }}">
+                    <a class="btn btn-success curation-button-up" title="{{ s.curate_dataset.curate_button_up }}" data-curation_direction="up">
                         <i class="icon-arrow-up"></i>
                     </a>
-                    <a class="btn btn-danger curation-button-down" title="{{ s.curate_dataset.curate_button_down }}">
+                    <a class="btn btn-danger curation-button-down" title="{{ s.curate_dataset.curate_button_down }}" data-curation_direction="down">
                         <i class="icon-arrow-down"></i>
                     </a>
                 </div>
