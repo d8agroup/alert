@@ -30,5 +30,8 @@ SITE_STRINGS = {
         'error_no_access_to_dataset': "Sorry but your account does not have access to that dataset.",
         'curate_button_up': "Mark this content as interesting",
         'curate_button_down': "Mark this content as not interesting",
+        'label_high_veracity': "high veracity",
+        'label_high_veracity_title': "This content may be important because the author is know for contributing "
+                                     "accurate and interesting content"
     }
 }

@@ -3,8 +3,17 @@
     <div class="row-fluid content-item ui-corner-all" data-content_item="{{ item.to_dict|jsonify }}">
         <div class="span3">
             <div class="content-item-actions row-fluid">
-                <div class="span8">
-
+                <div class="span8 content-item-labels">
+                    {% for md in item.metadata %}
+                        {% if md.key == 'metadata_alertauthorveracity_s' and 'high' in md.value %}
+                            <span class="label label-info">
+                                <i class="icon-info-sign"></i>
+                                <abbr title="{{ s.curate_dataset.label_high_veracity_title }}">
+                                    {{ s.curate_dataset.label_high_veracity }}
+                                </abbr>
+                            </span>
+                        {% endif %}
+                    {% endfor %}
                 </div>
                 <div class="content-item-curation-buttons span4">
                     <a class="btn btn-success curation-button-up" title="{{ s.curate_dataset.curate_button_up }}" data-curation_direction="up">
@@ -12,6 +21,9 @@
                     </a>
                     <a class="btn btn-danger curation-button-down" title="{{ s.curate_dataset.curate_button_down }}" data-curation_direction="down">
                         <i class="icon-arrow-down"></i>
+                    </a>
+                    <a class="hide curation-button-ignore" data-curation_direction="ignore">
+                        ignore
                     </a>
                 </div>
             </div>

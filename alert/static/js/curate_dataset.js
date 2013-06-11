@@ -352,7 +352,9 @@
                     curation_list.append(return_data.content_template);
 
                     //Init the content items
-                    curation_list.find('.content-item').ml_alert_curate_dataset_content_item();
+                    curation_list.find('.content-item').each(function(){
+                        $(this).ml_alert_curate_dataset_content_item();
+                    });
                 }
                 else {
 
@@ -363,9 +365,6 @@
                 //Set the display css
                 container.ml_alert_curate_dataset('set_display_css');
             });
-
-
-
         },
         attach_event_handlers: function(){
 
@@ -376,6 +375,36 @@
             $(window).resize(function(){
                 $('#dataset-curate').ml_alert_curate_dataset('set_display_css');
             });
+
+            //Attach to the scroll of the curation list
+            $('#curation-list').bindWithDelay('scroll', function(){
+
+                $('.content-item.mousedover').each(function(index, item){
+
+                    //Jqueryify the item
+                    var content_item_container = $(item);
+
+                    //Get the height of the content item container
+                    var content_item_container_height = content_item_container.height();
+
+                    //Get a handle on the curation list
+                    var curation_list = $('#curation-list');
+
+                    //Check if its off screen
+                    if (content_item_container_height + content_item_container.offset().top < curation_list.offset().top) {
+
+                        // Get the current scroll position
+                        var scroll_top = curation_list.scrollTop();
+
+                        //Call the ignore function
+                        content_item_container.find('.curation-button-ignore').click();
+
+                        //Reset the scroll of the div
+                        curation_list.scrollTop(scroll_top - content_item_container_height - 40);
+                    }
+                })
+
+            }, 500);
 
             //return the container
             return container;

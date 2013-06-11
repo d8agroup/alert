@@ -12,8 +12,10 @@
 #curation-filters { height:120px; }
 #curation-list { overflow:hidden; overflow-y: auto; min-height: 150px; padding-right:5px;}
 #curation-list .content-item { margin-bottom:20px; padding:10px 0;}
-#curation-list .content-item:hover { background:#EEE !important; }
+#curation-list .content-item.mousedover { opacity:0.5; }
+#curation-list .content-item:hover { background:#EEE !important; opacity:1;}
 #curation-list .content-item-curation-buttons a { margin:1px 5px; }
+#curation-list .content-item-labels .label { margin:10px;}
 #curation-list .content-item-data { min-height: 80px; }
 #curation-list .title { font-size:18px; margin-top:5px;}
 #curation-list .metadata { width:100%; }

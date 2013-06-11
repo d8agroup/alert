@@ -30,6 +30,11 @@
             //get a handel on the container
             var container = this;
 
+            //Attach to the mouse over
+            container.mouseover(function(){
+                $(this).addClass('mousedover');
+            });
+
             //Attach to the curation buttons
             container.find('.content-item-curation-buttons a').click(function(){
 
@@ -48,9 +53,7 @@
                 //Get a list of all the current content items
                 var content_item_ids = [];
                 $('.content-item').each(function(index, item){
-                    var content_item_id = $(item).data('content_item').id;
-                    if (content_item_id != content_item.id)
-                        content_item_ids.push(content_item_id);
+                    content_item_ids.push($(item).data('content_item').id);
                 });
 
                 //Build the post data for the api
@@ -62,8 +65,11 @@
                     content_item_ids: JSON.stringify(content_item_ids)
                 };
 
-                //Remove this item
-                container.slideUp(function(){$(this).remove()});
+                //If there was an actual user click then animate else just remove
+                if (button.is('.curation-button-ignore'))
+                    container.remove();
+                else
+                    container.slideUp(function(){$(this).remove()});
 
                 $.ml_alert_curate_dataset.refresh_content_list(post_data);
             });

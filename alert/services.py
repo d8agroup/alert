@@ -1,4 +1,4 @@
-from alert.utils import get_author_veracity
+from alert.models import AuthorVeracity
 from django_odc.services import _BaseService
 
 
@@ -27,8 +27,15 @@ class AlertV01Service(_BaseService):
         return channel_data_type in 'content_v01'
 
     def run(self, config, data):
-        for d in data:
-            d.add_metadata('alertstate', 'new', 'string')
-            d.add_metadata('alertcurationviews', 0, 'int')
-            d.add_metadata('alertauthorveracity', get_author_veracity(d), 'string')
+        if data:
+            author_veracities = AuthorVeracity.GetManyByAuthorDisplayName(
+                data[0].source['channel']['type'],
+                [d.author.display_name for d in data])
+            for d in data:
+                d.add_metadata('alertstate', 'new', 'string')
+                d.add_metadata('alertcurationviews', 0, 'int')
+                d.add_metadata(
+                    'alertauthorveracity',
+                    author_veracities[d.author.display_name].veracity_as_string,
+                    'string')
         return data

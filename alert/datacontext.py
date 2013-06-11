@@ -3,6 +3,9 @@ from django_odc.datacontext import Solr4xDataContent
 
 class AlertODCDataContext(Solr4xDataContent):
     def _run_delete_if_needed(self, source, connection):
+        # If this is an update only query then there may be no overriding source
+        if not source:
+            return
         per_source_limit = 10000
         results = connection.query(
             'source_id:%s' % source.guid, fl=['id'], sort='created_dt asc',
